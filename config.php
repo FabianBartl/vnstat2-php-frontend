@@ -28,21 +28,19 @@
     // edit these to reflect your particular situation
     //
     $locale = 'en_US.UTF-8';
-    $language = 'nl';
+    $language = 'en';
 
     // Set local timezone
-    date_default_timezone_set("Europe/Amsterdam");
+    date_default_timezone_set("Europe/Berlin");
 
     // list of network interfaces monitored by vnStat
-    $iface_list = array('eth0', 'sixxs');
+    $iface_list = array('eth0', 'enp3s0');
 
     //
-    // optional names for interfaces
-    // if there's no name set for an interface then the interface identifier
-    // will be displayed instead
+    // required names for interfaces
     //
-    $iface_title['eth0'] = 'Internal';
-    $iface_title['sixxs'] = 'SixXS IPv6';
+    $iface_title['eth0'] = 'External';
+    $iface_title['enp3s0'] = 'Local';
 
     //
     // There are two possible sources for vnstat data. If the $vnstat_bin
@@ -52,20 +50,23 @@
     // The other option is to periodically dump the vnstat interface data to
     // a file (e.g. by a cronjob). In that case the $vnstat_bin variable
     // must be cleared and set $data_dir to the location where the dumps
-    // are stored. Dumps must be named 'vnstat_dump_$iface'.
+    // are stored. Dumps must be named 'vnstat_dump_$iface.json'.
     //
     // You can generate vnstat dumps with the command:
-    //   vnstat --json -i $iface > /path/to/data_dir/vnstat_dump_$iface
+    //   vnstat --json -i $iface > /path/to/data_dir/vnstat_dump_$iface.json
     //
-    $vnstat_bin = '/usr/bin/vnstat';
+    // To display data from different vnstat instances, you can provide
+    // one vnstat json dump per interface in the data directory.
+    //
+    //$vnstat_bin = '/usr/bin/vnstat';
     $data_dir = './dumps';
 
     // graphics format to use: svg or png
     $graph_format='svg';
 
     // preferred byte notation. null auto chooses. otherwise use one of
-    // 'TB','GB','MB','KB'
-    $byte_notation = null;
+    // 'TiB','GiB','MiB','KiB'
+    $byte_notation = 'GiB';
 
     // Font to use for PNG graphs
     define('GRAPH_FONT',dirname(__FILE__).'/VeraBd.ttf');
