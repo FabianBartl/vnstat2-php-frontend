@@ -14,8 +14,8 @@ $L['Last 30 days'] = 'Derniers 30 jours';
 $L['Last 12 months'] = 'Les 12 derniers mois';
 
 // traffic table columns
-$L['In'] = 'Entrant';
-$L['Out'] = 'Sortant';
+$L['In'] = 'Téléchargé';
+$L['Out'] = 'Téléversé';
 $L['Total'] = 'Total';
 
 // summary rows
@@ -25,15 +25,15 @@ $L['This month'] = 'Ce mois';
 $L['All time'] = 'Tout temps';
 
 // graph text
-$L['Traffic data for'] = 'Traffic de donnée pour :';
-$L['bytes in'] = 'bytes entrants';
-$L['bytes out'] = 'bytes sortants';
+$L['Traffic data for'] = 'Traffic de donnée pour';
+$L['bytes in'] = 'Octects entrant';
+$L['bytes out'] = 'Octects sortant';
 
 // date formats
-$L['datefmt_days'] = '%d %B';
-$L['datefmt_days_img'] = '%d';
-$L['datefmt_months'] = '%B %Y';
-$L['datefmt_months_img'] = '%b';
-$L['datefmt_hours'] = '%Hh%M';
-$L['datefmt_hours_img'] = '%H';
-$L['datefmt_top'] = '%d %B %Y';
+$L['datefmt_days'] = 'dd MMMM';
+$L['datefmt_days_img'] = 'dd';
+$L['datefmt_months'] = 'MMMM yyyy';
+$L['datefmt_months_img'] = 'MMM';
+$L['datefmt_hours'] = 'HH\'h\'mm';
+$L['datefmt_hours_img'] = 'HH';
+$L['datefmt_top'] = 'dd MMMM yyyy';
