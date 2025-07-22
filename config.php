@@ -62,7 +62,6 @@
     $data_dir = './dumps';
 
     // graphics format to use: svg or png
-    // FIXME: png image generation fails
     $graph_format='svg';
 
     // preferred byte notation. null auto chooses. otherwise use one of
