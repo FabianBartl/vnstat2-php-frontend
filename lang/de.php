@@ -30,11 +30,10 @@ $L['bytes in'] = 'Bytes rein';
 $L['bytes out'] = 'Bytes raus';
 
 // date formats
-$L['datefmt_days'] = '%d.%B';
-$L['datefmt_days_img'] = '%d';
-$L['datefmt_months'] = '%B.%Y';
-$L['datefmt_months_img'] = '%b';
-$L['datefmt_hours'] = '%H:%M';
-$L['datefmt_hours_img'] = '%H';
-$L['datefmt_top'] = '%d.%B.%Y';
-
+$L['datefmt_days'] = 'dd.MMMM';
+$L['datefmt_days_img'] = 'dd';
+$L['datefmt_months'] = 'MMMM yyyy';
+$L['datefmt_months_img'] = 'MMM';
+$L['datefmt_hours'] = 'HH:mm';
+$L['datefmt_hours_img'] = 'HH';
+$L['datefmt_top'] = 'dd.MMMM.yyyy';

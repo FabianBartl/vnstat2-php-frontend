@@ -90,6 +90,20 @@
     }
 
 
+    function format_datetime(DateTime $datetime, string $pattern): string
+    {
+        $formatter = new IntlDateFormatter(
+            locale_get_default(),
+            IntlDateFormatter::NONE,
+            IntlDateFormatter::NONE,
+            date_default_timezone_get(),
+            IntlDateFormatter::GREGORIAN,
+            $pattern
+        );
+        return $formatter->format($datetime);
+    }
+
+
     function get_vnstat_data($use_label=true)
     {
         global $iface, $vnstat_bin, $data_dir;
@@ -98,7 +112,6 @@
         $vnstat_data = array();
         if (!isset($vnstat_bin) || $vnstat_bin == '')
         {
-            echo "file check";
             if (file_exists("$data_dir/vnstat_dump_$iface.json"))
             {
                 $file_data = file_get_contents("$data_dir/vnstat_dump_$iface.json");
@@ -153,68 +166,72 @@
         // per-day data
         // FIXME: instead of using array_reverse, sorting by date/time keys would be more reliable
         $day_data = array_reverse($traffic_data['day']);
-        for($i = 0; $i < min(30, count($day_data)); $i++) {
+        for ($i = 0; $i < min(30, count($day_data)); $i++) {
             $d = $day_data[$i];
             $ts = mktime(0, 0, 0, $d['date']['month'], $d['date']['day'], $d['date']['year']);
+            $date = (new DateTime())->setTimestamp($ts);
 
             $day[$i]['time'] = $ts;
             $day[$i]['rx'] = $d['rx'] / 1024;
             $day[$i]['tx'] = $d['tx'] / 1024;
             $day[$i]['act'] = 1;
 
-            if($use_label) {
-                $day[$i]['label'] = strftime(T('datefmt_days'), $ts);
-                $day[$i]['img_label'] = strftime(T('datefmt_days_img'), $ts);
+            if ($use_label) {
+                $day[$i]['label'] = format_datetime($date, T('datefmt_days'));
+                $day[$i]['img_label'] = format_datetime($date, T('datefmt_days_img'));
             }
         }
 
         // per-month data
         $month_data = array_reverse($traffic_data['month']);
-        for($i = 0; $i < min(12, count($month_data)); $i++) {
+        for ($i = 0; $i < min(12, count($month_data)); $i++) {
             $d = $month_data[$i];
             $ts = mktime(0, 0, 0, $d['date']['month']+1, 0, $d['date']['year']);
+            $date = (new DateTime())->setTimestamp($ts);
 
             $month[$i]['time'] = $ts;
             $month[$i]['rx'] = $d['rx'] / 1024;
             $month[$i]['tx'] = $d['tx'] / 1024;
             $month[$i]['act'] = 1;
 
-            if($use_label) {
-                $month[$i]['label'] = strftime(T('datefmt_months'), $ts);
-                $month[$i]['img_label'] = strftime(T('datefmt_months_img'), $ts);
+            if ($use_label) {
+                $month[$i]['label'] = format_datetime($date, T('datefmt_months'));
+                $month[$i]['img_label'] = format_datetime($date, T('datefmt_months_img'));
             }
         }
 
         // per-hour data
         $hour_data = array_reverse($traffic_data['hour']);
-        for($i = 0; $i < min(24, count($hour_data)); $i++) {
+        for ($i = 0; $i < min(24, count($hour_data)); $i++) {
             $d = $hour_data[$i];
             $ts = mktime($d['time']['hour'], $d['time']['minute'], 0, $d['date']['month'], $d['date']['day'], $d['date']['year']);
+            $date = (new DateTime())->setTimestamp($ts);
 
             $hour[$i]['time'] = $ts;
             $hour[$i]['rx'] = $d['rx'] / 1024;
             $hour[$i]['tx'] = $d['tx'] / 1024;
             $hour[$i]['act'] = 1;
 
-            if($use_label) {
-                $hour[$i]['label'] = strftime(T('datefmt_hours'), $ts);
-                $hour[$i]['img_label'] = strftime(T('datefmt_hours_img'), $ts);
+            if ($use_label) {
+                $hour[$i]['label'] = format_datetime($date, T('datefmt_hours'));
+                $hour[$i]['img_label'] = format_datetime($date, T('datefmt_hours_img'));
             }
         }
 
         // top10 days data
         $top10_data = $traffic_data['top'];
-        for($i = 0; $i < min(10, count($top10_data)); $i++) {
+        for ($i = 0; $i < min(10, count($top10_data)); $i++) {
             $d = $top10_data[$i];
             $ts = mktime(0, 0, 0, $d['date']['month'], $d['date']['day'], $d['date']['year']);
+            $date = (new DateTime())->setTimestamp($ts);
 
             $top[$i]['time'] = $ts;
             $top[$i]['rx'] = $d['rx'] / 1024;
             $top[$i]['tx'] = $d['tx'] / 1024;
             $top[$i]['act'] = 1;
 
-            if($use_label) {
-                $top[$i]['label'] = strftime(T('datefmt_top'), $ts);
+            if ($use_label) {
+                $top[$i]['label'] = format_datetime($date, T('datefmt_top'));
                 $top[$i]['img_label'] = '';
             }
         }

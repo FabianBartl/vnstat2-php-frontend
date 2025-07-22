@@ -31,7 +31,7 @@
     $language = 'en_24h';
 
     // Set local timezone
-    date_default_timezone_set("Europe/Berlin");
+    date_default_timezone_set('Europe/Berlin');
 
     // list of network interfaces monitored by vnStat
     $iface_list = array('eth0', 'enp3s0');
@@ -66,7 +66,7 @@
 
     // preferred byte notation. null auto chooses. otherwise use one of
     // 'TiB','GiB','MiB','KiB'
-    $byte_notation = 'GiB';
+    $byte_notation = null;
 
     // Font to use for PNG graphs
     define('GRAPH_FONT',dirname(__FILE__).'/VeraBd.ttf');
@@ -75,9 +75,9 @@
     define('SVG_FONT', 'Verdana');
 
     // Default theme
-    define('DEFAULT_COLORSCHEME', 'light');
+    define('DEFAULT_COLORSCHEME', 'red');
     
     // SVG Depth scaling factor
-    define('SVG_DEPTH_SCALING', 1);
+    define('SVG_DEPTH_SCALING', 0);
 
 ?>
