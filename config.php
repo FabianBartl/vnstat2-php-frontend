@@ -62,6 +62,7 @@
     $data_dir = './dumps';
 
     // graphics format to use: svg or png
+    // FIXME: png image generation fails
     $graph_format='svg';
 
     // preferred byte notation. null auto chooses. otherwise use one of
@@ -71,13 +72,13 @@
     // Font to use for PNG graphs
     define('GRAPH_FONT',dirname(__FILE__).'/VeraBd.ttf');
 
-    // Font to use for SVG graphs
-    define('SVG_FONT', 'Verdana');
+    // Font to use for SVG graphs, use one of
+    // 'Verdana', 'Cascadia Mono Light'
+    define('SVG_FONT', 'Cascadia Mono Light');
 
     // Default theme
-    define('DEFAULT_COLORSCHEME', 'red');
+    define('DEFAULT_COLORSCHEME', 'lines');
     
     // SVG Depth scaling factor
     define('SVG_DEPTH_SCALING', 0);
-
 ?>
